@@ -4,49 +4,49 @@ services: docker
 env:
   - distro: centos6
     version: latest
-    run_opts: "--privileged"
     init: /sbin/init
 
   - distro: centos7
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     version: latest
 
   - distro: oracle6
     version: latest
-    run_opts: "--privileged"
     init: /sbin/init
 
-  - distro: oracle7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    version: latest
-
-# see https://github.com/dev-sec/mysql-baseline/issues/35
-#  - distro: ubuntu1604
-#    version: latest
+#  - distro: oracle7
 #    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
-#  - distro: ubuntu1404
 #    version: latest
-#    run_opts: "--privileged"
-#    init: /sbin/init
+
+  - distro: ubuntu1604
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: ubuntu1404
+    version: latest
+    init: /sbin/init
 
   - distro: debian7
     version: latest
-    run_opts: "--privileged"
     init: /sbin/init
 
-#  - distro: debian8
-#    version: latest
-#    init: /bin/systemd
-#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: debian8
+    version: latest
+    init: /sbin/init
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
- # - distro: debian9
- #   version: latest
- #   init: /lib/systemd/systemd
- #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: debian9
+    version: latest
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+
+  - distro: amazon
+    init: /lib/systemd/systemd
+    version: latest
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
   # Pull container
