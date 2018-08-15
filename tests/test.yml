@@ -4,14 +4,6 @@
   hosts: localhost
   pre_tasks:
     - file: path="/etc/mysql" state=directory
-    - name: Copy initctl_faker into place for Ubuntu 14.04.
-      copy:
-        src: initctl_faker
-        dest: /sbin/initctl
-        mode: 0755
-        force: yes
-      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
-      changed_when: false
     - name: install procps for debian systems
       apt: name=procps state=installed update_cache=yes
       when: ansible_distribution == 'Debian'
